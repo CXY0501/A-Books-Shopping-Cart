@@ -118,10 +118,21 @@
       computed:{
         totalPrice(){
           this.total = 0
-          for(let i in this.books){
-            this.total += this.books[i].price * this.books[i].qty
-          }
-          return this.total
+          //1. -------let i in, i is an index------
+          // for(let i in this.books){
+          //   this.total += this.books[i].price * this.books[i].qty
+          // }
+          // return this.total
+          //2. -------let i of, i is the item------
+          // for(let i of this.books){
+          //   this.total += i.price * i.qty
+          // }
+          // return this.total
+          //3. -------reduce函数--------
+          return this.books.reduce(function(prevalue,book){
+            return prevalue+book.price*book.qty
+          },0)
+          
         }
       },
       filters:{
