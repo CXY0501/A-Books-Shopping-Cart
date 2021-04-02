@@ -80,11 +80,12 @@
             <td>{{item.date}}</td>
             <td>¥ {{item.price}}</td>
             <td><button @click="sub(index)" :disabled = "item.qty == 0">-</button>{{item.qty}}<button @click="add(index)">+</button></td>
-            <td><button @click="remove(index)">删除</button></td>
+            <td><button @click="remove(index)">移除</button></td>
         </tr>
     </tbody>
     </table>
-    <h2>总价格：¥ {{totalPrice}}</h2>
+    <h2 v-if="books.length>0">总价格：¥ {{totalPrice}}</h2>
+    <h2 v-else>购物车为空</h2>
   </div>
   
   <script>
@@ -111,7 +112,7 @@
         },
         remove(index){
           // this.total -= this.books[index].price * this.books[index].qty
-          this.books[index].qty = 0
+          this.books.splice(index,1)
         }
       },
       computed:{
