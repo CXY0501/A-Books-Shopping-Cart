@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style type="text/css">
+    html {
+        font-family: sans-serif;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+    }
+    
+    body {
+        margin: 10px;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    
+    td,th {
+        padding: 0;
+    }
+    
+    .pure-table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        empty-cells: show;
+        border: 1px solid #cbcbcb;
+    }
+    
+    .pure-table caption {
+        color: #000;
+        font: italic 85%/1 arial,sans-serif;
+        padding: 1em 0;
+        text-align: center;
+    }
+    
+    .pure-table td,.pure-table th {
+        border-left: 1px solid #cbcbcb;
+        border-width: 0 0 0 1px;
+        font-size: inherit;
+        margin: 0;
+        overflow: visible;
+        padding: .5em 1em;
+    }
+    
+    .pure-table thead {
+        background-color: #e0e0e0;
+        color: #000;
+        text-align: left;
+        vertical-align: bottom;
+    }
+    
+    .pure-table td {
+        background-color: transparent;
+    }
+  </style>
+  
+  <script src="./vue.js"></script>
+  <div id="app">
+    <table class="pure-table">
+      <thead>
+          <tr>
+              <th>#</th>
+              <th>书籍名称</th>
+              <th>出版日期</th>
+              <th>价格</th>
+              <th>购买数量</th>
+              <th>操作</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in books">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.date}}</td>
+            <td>¥ {{item.price}}</td>
+            <td><button @click="sub(index)" :disabled = "item.qty == 0">-</button>{{item.qty}}<button @click="add(index)">+</button></td>
+            <td><button @click="remove(index)">删除</button></td>
+        </tr>
+    </tbody>
+    </table>
+    <h2>总价格：¥ {{totalPrice}}</h2>
+  </div>
+  
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data:{
+        books:[
+          {id:1,name:'算法导论',date:'2006-9',price:85.00,qty:0},
+          {id:2,name:'UNIX编程艺术',date:'2006-2',price:59.00,qty:0},
+          {id:3,name:'编程珠玑',date:'2008-10',price:39.00,qty:0},
+          {id:4,name:'代码大全',date:'2006-3',price:128.00,qty:0},
+          {id:5,name:'How to Build DTC from Scratch in P&G',date:'2021-3',price:228.00,qty:0}
+        ],
+        total:0
+      },
+      methods:{
+        sub(index){
+          this.books[index].qty -= 1
+          // this.total -= this.books[index].price
+        },
+        add(index){
+          this.books[index].qty += 1
+          // this.total += this.books[index].price
+        },
+        remove(index){
+          // this.total -= this.books[index].price * this.books[index].qty
+          this.books[index].qty = 0
+        }
+      },
+      computed:{
+        totalPrice(){
+          this.total = 0
+          for(let i in this.books){
+            this.total += this.books[i].price * this.books[i].qty
+          }
+          return this.total
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <span v-if="isUser">
+      <label for="mobile">Mobile Number</label>
+      <input type="text" id="mobile" placeholder="Please input your mobile number" key="mobile">
+    </span>
+    <span v-else>
+      <label for="email">Email Address</label>
+      <input type="text" id="email" placeholder="Please input your Email Address" key="email">
+    </span>
+    <button @click="isUser = !isUser">
+      Change Account Type
+    </button>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        isUser : true
+      }
+    })
+  </script>
+</body>
+</html>

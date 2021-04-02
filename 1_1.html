@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <ul>
+            <li v-for="item in movies">{{item}}</li>
+        </ul>
+        <h3>
+            当前计数：{{counter}}
+        </h3>
+        <button @click="add">+</button>
+        <button @click="sub">-</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'Hello',
+                movies: ['Raya & The last Dragon','Tom & Jerry','Doraemon'],
+                counter: 0
+            },
+            methods:{
+                add(){
+                    console.log('addition');
+                    this.counter++
+                },
+                sub(){
+                    console.log('subtraction');
+                    this.counter--
+                }
+            }
+        })
+    </script>
+</body>
+</html>
