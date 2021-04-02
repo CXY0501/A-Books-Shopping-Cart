@@ -78,13 +78,13 @@
             <td>{{item.id}}</td>
             <td>{{item.name}}</td>
             <td>{{item.date}}</td>
-            <td>¥ {{item.price}}</td>
+            <td>{{item.price | showprice}}</td>
             <td><button @click="sub(index)" :disabled = "item.qty == 0">-</button>{{item.qty}}<button @click="add(index)">+</button></td>
             <td><button @click="remove(index)">移除</button></td>
         </tr>
     </tbody>
     </table>
-    <h2 v-if="books.length>0">总价格：¥ {{totalPrice}}</h2>
+    <h2 v-if="books.length>0">总价格：{{totalPrice | showprice}}</h2>
     <h2 v-else>购物车为空</h2>
   </div>
   
@@ -93,11 +93,11 @@
       el: '#app',
       data:{
         books:[
-          {id:1,name:'算法导论',date:'2006-9',price:85.00,qty:0},
-          {id:2,name:'UNIX编程艺术',date:'2006-2',price:59.00,qty:0},
-          {id:3,name:'编程珠玑',date:'2008-10',price:39.00,qty:0},
-          {id:4,name:'代码大全',date:'2006-3',price:128.00,qty:0},
-          {id:5,name:'How to Build DTC from Scratch in P&G',date:'2021-3',price:228.00,qty:0}
+          {id:1,name:'算法导论',date:'2006-9',price:85.00,qty:1},
+          {id:2,name:'UNIX编程艺术',date:'2006-2',price:59.00,qty:1},
+          {id:3,name:'编程珠玑',date:'2008-10',price:39.00,qty:1},
+          {id:4,name:'代码大全',date:'2006-3',price:128.00,qty:1},
+          {id:5,name:'How to Build DTC from Scratch in P&G',date:'2021-3',price:228.00,qty:1}
         ],
         total:0
       },
@@ -122,6 +122,11 @@
             this.total += this.books[i].price * this.books[i].qty
           }
           return this.total
+        }
+      },
+      filters:{
+        showprice(price){
+          return '¥'+price.toFixed(2)
         }
       }
     })
