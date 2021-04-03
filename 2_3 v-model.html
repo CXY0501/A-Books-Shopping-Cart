@@ -28,8 +28,21 @@
       <option v-for="item in fruits" :value="item">{{item}}</option>
     </select>
     <h2>{{fruitChosen}}</h2>
-    
-    <!-- <li v-for="item in hobbies">{{item}}</li> -->
+
+    <label for="lazy">
+      <input type="text" v-model.lazy="name">
+    </label>
+    <h2>{{name}}</h2>
+
+    <label for="number">
+      <input type="number" v-model.number="number">
+    </label>
+    <h2>{{number}}-{{typeof number}}</h2>
+
+    <label for="trim">
+      <input type="text" v-model.trim="address">
+    </label>
+    <h2>{{address}}</h2>
   </div>
   
   <script src="./vue.js"></script>
@@ -42,7 +55,10 @@
         hobbies:['Basketball','Football','Ice Hockey','Tennis'],
         hobbiesChosen:[],
         fruits:['Apple','Pear','Banana','Watermelon'],
-        fruitChosen:[]
+        fruitChosen:[],
+        name:'Christiano',
+        number:0,
+        address:''
       }
     })
   </script>

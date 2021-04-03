@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./vue.js"></script>
+  <div id="app">
+    <cpn :cmovies="movies" @cpn-click="cpnClick"></cpn>
+    <h1>你选中的电影是：{{movieChosen}}</h1>
+  </div>
+  
+  <template id="c-cpn">
+    <div>
+      <button v-for="item in cmovies" @click="itemclick(item)">{{item}}</button>
+    </div>
+  </template>
+  
+  <script>
+    const cpn = {
+      template: '#c-cpn',
+      data(){
+        return{
+        }
+      },
+      methods:{
+        itemclick(item){
+          this.$emit("cpn-click",item)
+        }
+      },
+      props:{
+        cmovies:{
+          type: Array,
+          default(){
+            return []
+          }
+        }
+      }
+    }
+    const app = new Vue({
+      el:'#app',
+      data:{
+        movies:['Raya & The last Dragon','The Croods','Gozzilla & King Kong','Tom & Jerry'],
+        movieChosen:''
+      },
+      components:{
+        cpn
+      },
+      methods:{
+        cpnClick(item){
+          console.log(item);
+          this.movieChosen = item
+        }
+      }
+    })
+  </script>
+</body>
+</html>
