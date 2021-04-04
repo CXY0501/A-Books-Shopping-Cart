@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <template id="cpn">
+    <div>
+      <slot name="left"><span>LEFT</span></slot>
+      <slot name="middle"><span>MIDDLE</span></slot>
+      <slot name="right"><span>RIGHT</span></slot>
+    </div>
+  </template>
+
+  <div id="app">
+    <cpn></cpn>
+    <cpn><button slot="middle">Click Me</button></cpn>
+  </div>
+
+  <script src="./vue.js"></script>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+
+      },
+      components:{
+        cpn:{
+          template:'#cpn',
+        }
+      }
+    })
+  </script>
+</body>
+</html>
