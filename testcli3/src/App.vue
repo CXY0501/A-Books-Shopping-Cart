@@ -3,11 +3,23 @@
     <div id="nav">
       <router-link to="/home">Home</router-link> | 
       <router-link to="/about">About</router-link> | 
-      <router-link to="/profile">Profile</router-link>
+      <router-link to="/profile">Profile</router-link> | 
+      <router-link :to="'/user/'+userid">User</router-link>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default{
+  name:'app',
+  data(){
+    return{
+      userid:'charlie'
+    }
+  }
+}
+</script>
 
 <style>
 #app {
