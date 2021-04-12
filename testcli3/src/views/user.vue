@@ -10,7 +10,7 @@ export default{
   name:'User',
   data(){
     return{
-      name: 'chalie'
+      name: 'Chalie'
     }
   },
   methods:{

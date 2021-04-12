@@ -1,10 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Profile from '../views/Profile.vue'
-import User from '../views/user.vue'
+// import Home from '../views/Home.vue'
+// import Profile from '../views/Profile.vue'
+// import User from '../views/user.vue'
+
+const Home = () => import('../views/Home')
+const Profile = () => import('../views/Profile')
+const User = () => import('../views/user')
 
 Vue.use(VueRouter)
+
+
 
 const routes = [
   {
