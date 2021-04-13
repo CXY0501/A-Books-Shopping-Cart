@@ -4,7 +4,7 @@
       <router-link to="/home">Home</router-link> | 
       <router-link to="/about">About</router-link> | 
       <router-link to="/profile">Profile</router-link> | 
-      <router-link :to="'/user/'+userid">User</router-link>
+      <router-link :to="{path:'/user',query:player}">User</router-link>
     </div>
     <router-view/>
   </div>
@@ -15,7 +15,12 @@ export default{
   name:'app',
   data(){
     return{
-      userid:'charlie'
+      userid:'charlie',
+      player:{
+        name: 'Curry',
+        height: 198,
+        weight: 100
+      }
     }
   }
 }

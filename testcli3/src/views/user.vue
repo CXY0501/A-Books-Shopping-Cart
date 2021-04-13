@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <h1>Hello,{{$route.params.userid}}</h1>
+    <h1>Hello,{{$route.query.name}}</h1>
     <p>Great to see you again!</p>
   </div>
 </template>
